@@ -2,7 +2,7 @@
 A collection of simple Java applications.
 
 ## Technologies
-I use Java 8 and Swing (partially).
+I use Java 8, partially Swing and JUnit5 for testing.
 
 ## The applications
 ### Acronym
@@ -96,3 +96,17 @@ Reverse a String with StringBuilder and Swing I/O.
 
 ### SumOfMultiples
 Calculate all multiples of a number and show their total sum.
+
+## Unit Tests
+The associated Unit Tests for all applications can be found in the "test" folder. The naming is based on the name of the class + "Test".
+
+## How to set it up
+- Download or clone the repo. 
+- Open / import the repo in an IDE, I use Eclipse.
+- Run the application (Eclipse): 
+	- Open an application (main folder).
+	- Press ctrl + F11 or the run button
+- Run the test (Eclipse): 
+	- Open a test file (test folder).
+	- Press the right button of your mouse and navigate to "Run as".
+	- Click on "JUnit Test"
