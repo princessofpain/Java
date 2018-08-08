@@ -7,11 +7,11 @@ import javax.swing.JOptionPane;
  * output via console
  */
 
-class CheckForArmstrongNumber {
+public class CheckForArmstrongNumber {
 	
 	private static CheckForArmstrongNumber number = new CheckForArmstrongNumber();
 	
-	String checkForArmstrongNumber(String enteredNumber) {
+	public String check(String enteredNumber) {
 		int[] allDigits = number.splitNumberInSingleDigits(enteredNumber);
 		int result = number.calculateSumToCheck(allDigits);
 		String message = number.returnResultMessageOfCheck(result,enteredNumber);
@@ -19,7 +19,7 @@ class CheckForArmstrongNumber {
 		return message;
 	}
 	
-	int[] splitNumberInSingleDigits(String enteredNumber) {
+	private int[] splitNumberInSingleDigits(String enteredNumber) {
 		int digits[] = new int[enteredNumber.length()];
 		
 		for(int i = 0; i < digits.length; i++) {
@@ -29,7 +29,7 @@ class CheckForArmstrongNumber {
 		return digits;
 	}
 	
-	int calculateSumToCheck(int[] digits) {
+	public int calculateSumToCheck(int[] digits) {
 		int result = 0;
 		
 		for(int i = 0; i < digits.length; i++) {
@@ -39,7 +39,7 @@ class CheckForArmstrongNumber {
 		return result;
 	}
 	
-	String returnResultMessageOfCheck(int result, String enteredNumber) {		
+	private String returnResultMessageOfCheck(int result, String enteredNumber) {		
 		if(result == Integer.parseInt(enteredNumber)) {
 			return "The number " + enteredNumber + " is an armstrong number!";
 		} else {
@@ -49,7 +49,7 @@ class CheckForArmstrongNumber {
 	
 	public static void main(String[] args) {	
 		String enteredNumber = JOptionPane.showInputDialog("Enter a number to check if it is an Armstrong Number:");
-		String resultMessage = number.checkForArmstrongNumber(enteredNumber);
+		String resultMessage = number.check(enteredNumber);
 		
 		JOptionPane.showMessageDialog(null, resultMessage);
 	}
