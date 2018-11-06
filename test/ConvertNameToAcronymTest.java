@@ -13,7 +13,7 @@ class ConvertNameToAcronymTest {
 	@Test 
 	void nameIsNotConvertedToNull() {
 		String nameToConvert = "Heidi Müller";
-		String actualAcronymResult = name.isConvertedToAcronym(nameToConvert);
+		String actualAcronymResult = name.convert(nameToConvert);
 
 		assertNotNull(actualAcronymResult);
 	}
@@ -21,7 +21,7 @@ class ConvertNameToAcronymTest {
 	@Test
 	void acronymHasAllStartingLetters() {
 		String nameToConvert = "Heidi Müller";
-		String actualAcronymResult = name.isConvertedToAcronym(nameToConvert);		
+		String actualAcronymResult = name.convert(nameToConvert);		
 		String expectedAcronymResult = "HM";
 		
 		assertEquals(expectedAcronymResult, actualAcronymResult);
