@@ -11,14 +11,14 @@ public class ConvertNameToAcronym {
 	
 	private static ConvertNameToAcronym name = new ConvertNameToAcronym();
 	
-	public String isConvertedToAcronym(String enteredName) {
+	public String convert(String enteredName) {
 		enteredName.toLowerCase();
 		String acronym = name.pickStartingLettersForAcronym(enteredName);	
 		
 		return acronym;
 	}
 	
-	String pickStartingLettersForAcronym(String enteredName) {
+	private String pickStartingLettersForAcronym(String enteredName) {
 		StringBuilder buildAcronym = new StringBuilder();
 		
 		for(int i = 0; i < enteredName.length(); i++) {
@@ -33,8 +33,10 @@ public class ConvertNameToAcronym {
 	}
 	
 	public static void main(String args[]) {
-		String enteredName = JOptionPane.showInputDialog(null, "Enter a name:");
+		String enteredName;
 		
-		JOptionPane.showMessageDialog(null, "Your acronym is: " + name.isConvertedToAcronym(enteredName));	
+			enteredName = JOptionPane.showInputDialog(null, "Enter a name:");
+		
+		JOptionPane.showMessageDialog(null, "Your acronym is: " + name.convert(enteredName));	
 	}
 }
