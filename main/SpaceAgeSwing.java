@@ -96,13 +96,11 @@ public class SpaceAgeSwing extends JFrame {
 		contentPane.add(neptuneResult);
 		
 		JCheckBox chckbxMercury = new JCheckBox("Mercury");
-		chckbxMercury.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(chckbxMercury.isSelected()) {
-					mercuryResult.setText("Your age in years: " + calculateAge(1, Double.parseDouble(age.getText())));
-				} else {
-					mercuryResult.setText("");
-				}
+		chckbxMercury.addActionListener((event) -> {
+			if(chckbxMercury.isSelected()) {
+				mercuryResult.setText("Your age in years: " + calculateAge("Mercury", Integer.parseInt(age.getText())));
+			} else {
+				mercuryResult.setText("");
 			}
 		});
 		chckbxMercury.setFont(new Font("Dialog", Font.BOLD, 11));
@@ -110,13 +108,11 @@ public class SpaceAgeSwing extends JFrame {
 		contentPane.add(chckbxMercury);
 		
 		JCheckBox chckbxVenus = new JCheckBox("Venus");
-		chckbxVenus.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(chckbxVenus.isSelected()) {
-					venusResult.setText("Your age in years: " + calculateAge(2, Double.parseDouble(age.getText())));
-				} else {
-					venusResult.setText("");
-				}
+		chckbxVenus.addActionListener((event) -> {
+			if(chckbxVenus.isSelected()) {
+				venusResult.setText("Your age in years: " + calculateAge("Venus", Integer.parseInt(age.getText())));
+			} else {
+				venusResult.setText("");
 			}
 		});
 		chckbxVenus.setFont(new Font("Dialog", Font.BOLD, 11));
@@ -124,13 +120,11 @@ public class SpaceAgeSwing extends JFrame {
 		contentPane.add(chckbxVenus);
 		
 		JCheckBox chckbxMars = new JCheckBox("Mars");
-		chckbxMars.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(chckbxMars.isSelected()) {
-					marsResult.setText("Your age in years: " + calculateAge(3, Double.parseDouble(age.getText())));
-				} else {
-					marsResult.setText("");
-				}
+		chckbxMars.addActionListener((event) -> {
+			if(chckbxMars.isSelected()) {
+				marsResult.setText("Your age in years: " + calculateAge("Mars", Integer.parseInt(age.getText())));
+			} else {
+				marsResult.setText("");
 			}
 		});
 		chckbxMars.setFont(new Font("Dialog", Font.BOLD, 11));
@@ -141,7 +135,7 @@ public class SpaceAgeSwing extends JFrame {
 		chckbxJupiter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(chckbxJupiter.isSelected()) {
-					jupiterResult.setText("Your age in years: " + calculateAge(4, Double.parseDouble(age.getText())));
+					jupiterResult.setText("Your age in years: " + calculateAge("Jupiter", Integer.parseInt(age.getText())));
 				} else {
 					jupiterResult.setText("");
 				}
@@ -152,13 +146,11 @@ public class SpaceAgeSwing extends JFrame {
 		contentPane.add(chckbxJupiter);
 		
 		JCheckBox chckbxSaturn = new JCheckBox("Saturn");
-		chckbxSaturn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(chckbxSaturn.isSelected()) {
-					saturnResult.setText("Your age in years: " + calculateAge(5, Double.parseDouble(age.getText())));
-				} else {
-					saturnResult.setText("");
-				}
+		chckbxSaturn.addActionListener((event) -> {
+			if(chckbxSaturn.isSelected()) {
+				saturnResult.setText("Your age in years: " + calculateAge("Saturn", Integer.parseInt(age.getText())));
+			} else {
+				saturnResult.setText("");
 			}
 		});
 		chckbxSaturn.setFont(new Font("Dialog", Font.BOLD, 11));
@@ -166,13 +158,11 @@ public class SpaceAgeSwing extends JFrame {
 		contentPane.add(chckbxSaturn);
 		
 		JCheckBox chckbxUranus = new JCheckBox("Uranus");
-		chckbxUranus.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(chckbxUranus.isSelected()) {
-					uranusResult.setText("Your age in years: " + calculateAge(6, Double.parseDouble(age.getText())));
-				} else {
-					uranusResult.setText("");
-				}
+		chckbxUranus.addActionListener((event) -> {
+			if(chckbxUranus.isSelected()) {
+				uranusResult.setText("Your age in years: " + calculateAge("Uranus", Integer.parseInt(age.getText())));
+			} else {
+				uranusResult.setText("");
 			}
 		});
 		chckbxUranus.setFont(new Font("Dialog", Font.BOLD, 11));
@@ -180,13 +170,11 @@ public class SpaceAgeSwing extends JFrame {
 		contentPane.add(chckbxUranus);
 		
 		JCheckBox chckbxNeptune = new JCheckBox("Neptune");
-		chckbxNeptune.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(chckbxNeptune.isSelected()) {
-					neptuneResult.setText("Your age in years: " + calculateAge(7, Double.parseDouble(age.getText())));
-				} else {
-					neptuneResult.setText("");
-				}
+		chckbxNeptune.addActionListener((event) -> {
+			if(chckbxNeptune.isSelected()) {
+				neptuneResult.setText("Your age in years: " + calculateAge("Neptune", Integer.parseInt(age.getText())));
+			} else {
+				neptuneResult.setText("");
 			}
 		});
 		chckbxNeptune.setFont(new Font("Dialog", Font.BOLD, 11));
@@ -194,57 +182,47 @@ public class SpaceAgeSwing extends JFrame {
 		contentPane.add(chckbxNeptune);
 		
 		JButton btnReset = new JButton("Reset");
-		btnReset.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				age.setText("");
-				chckbxMercury.setSelected(false);
-				mercuryResult.setText("");
-				chckbxVenus.setSelected(false);
-				venusResult.setText("");
-				chckbxMars.setSelected(false);
-				marsResult.setText("");
-				chckbxJupiter.setSelected(false);
-				jupiterResult.setText("");
-				chckbxSaturn.setSelected(false);
-				saturnResult.setText("");
-				chckbxUranus.setSelected(false);
-				uranusResult.setText("");
-				chckbxNeptune.setSelected(false);
-				neptuneResult.setText("");
-			}
+		btnReset.addActionListener((event) -> {
+			age.setText("");
+			chckbxMercury.setSelected(false);
+			mercuryResult.setText("");
+			chckbxVenus.setSelected(false);
+			venusResult.setText("");
+			chckbxMars.setSelected(false);
+			marsResult.setText("");
+			chckbxJupiter.setSelected(false);
+			jupiterResult.setText("");
+			chckbxSaturn.setSelected(false);
+			saturnResult.setText("");
+			chckbxUranus.setSelected(false);
+			uranusResult.setText("");
+			chckbxNeptune.setSelected(false);
+			neptuneResult.setText("");
 		});
 		btnReset.setFont(new Font("Dialog", Font.BOLD, 11));
 		btnReset.setBounds(307, 43, 98, 21);
 		contentPane.add(btnReset);
 	}
 	
-	String calculateAge(int planet, double ageInYears) {
+	public String calculateAge(String planet, int ageInYears) {
 		double result = 0;
 		
 		switch(planet) {
-			// Mercury
-			case 1: result = ageInYears * 0.2408467;
+			case "Mercury": result = ageInYears * 0.2408467;
 					break;
-			// Venus
-			case 2: result = ageInYears * 0.61519726;
+			case "Venus": result = ageInYears * 0.61519726;
 					break;
-			// Mars
-			case 3: result = ageInYears * 1.8808158;
+			case "Mars": result = ageInYears * 1.8808158;
 					break;
-			// Jupiter
-			case 4: result = ageInYears * 11.862615;
+			case "Jupiter": result = ageInYears * 11.862615;
 					break;
-			// Saturn
-			case 5: result = ageInYears * 29.447498;
+			case "Saturn": result = ageInYears * 29.447498;
 					break;
-			// Uranus
-			case 6: result = ageInYears * 84.016846;
+			case "Uranus": result = ageInYears * 84.016846;
 					break;		
-			// Neptune
-			case 7: result = ageInYears * 164.79132;
+			case "Neptune": result = ageInYears * 164.79132;
 					break;
 		}
-		
 		
 		DecimalFormat df = new DecimalFormat("0.00");
 		
