@@ -91,7 +91,7 @@ Reverse a String.
 ### StringReverse2
 Reverse a String with StringBuilder.
 
-###StringReverseSwing
+### StringReverseSwing
 Reverse a String with StringBuilder and Swing I/O.
 
 ### SumOfMultiples
