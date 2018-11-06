@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 public class DifferenceOfSquares {
 	
-	int squareOfSum(int num) {
+	public int calculateSquareOfSum(int num) {
 		int result = 0;
 		
 		for(int i = 1; i <= num; i++) {
@@ -21,7 +21,7 @@ public class DifferenceOfSquares {
 		return result;
 	}
 	
-	int sumOfSquares(int num) {
+	public int calculateSumOfSquares(int num) {
 		int result = 0;
 		
 		for(int i = 1; i <= num; i++) {
@@ -31,15 +31,25 @@ public class DifferenceOfSquares {
 		return result;
 	}
 	
-	int differenceOfResults(int num) {
-		int result = squareOfSum(num) - sumOfSquares(num);
+	public int differenceOfResults(int num) {
+		int squareOfSum = calculateSquareOfSum(num);
+		int sumOfSquares = calculateSumOfSquares(num);
+		int result;
+		
+		if(squareOfSum > sumOfSquares) {
+			result = squareOfSum - sumOfSquares;
+		} else {
+			result = sumOfSquares - squareOfSum;
+		}
+		System.out.println(result);
+		
 		return result;
 	}
 
 	public static void main(String[] args) {
-		DifferenceOfSquares num1 = new DifferenceOfSquares();
-		
-		int number = Integer.parseInt(JOptionPane.showInputDialog("Enter a number to calculate the differences of the Squares:"));
+		DifferenceOfSquares num1 = new DifferenceOfSquares();		
+		String input = JOptionPane.showInputDialog("Enter a number to calculate the differences of the Squares:");
+		int number = Integer.parseInt(input);
 		
 		JOptionPane.showMessageDialog(null, "The result is: " + num1.differenceOfResults(number));
 	}
