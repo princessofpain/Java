@@ -10,8 +10,8 @@ public class ISBNVerifier {
 	
 	public static void main(String args[]) {
 		String str = JOptionPane.showInputDialog("Enter an ISBN-10 number to check if it´s valid:");
-		ISBNVerifier ISBN = new ISBNVerifier();
-		boolean isValidISBN = ISBN.check(str);
+		ISBNVerifier isbn = new ISBNVerifier();
+		boolean isValidISBN = isbn.check(str);
 		
 		if(isValidISBN) {
 			JOptionPane.showMessageDialog(null, str + " is a valid ISBN-10 number.");
@@ -20,16 +20,17 @@ public class ISBNVerifier {
 		}
 	}
 	
-	boolean check(String isbn) {		
+	public boolean check(String isbn) {		
 		int factor = calculateFactor(isbn);
 		int verificationDigit = assignVerificationDigit(isbn);
 		int total = factor + verificationDigit;
+		System.out.println(factor);
 		boolean isValidISBN = validate(total);
 		
 		return isValidISBN;
 	}
 	
-	int calculateFactor(String isbn) {
+	public int calculateFactor(String isbn) {
 		int result = 0;
 		
 		for(int i = 0, b = 10; i < isbn.length() - 1; i++) {
@@ -47,7 +48,7 @@ public class ISBNVerifier {
 		return result;
 	}
 	
-	int assignVerificationDigit(String isbn) {
+	public int assignVerificationDigit(String isbn) {
 		char verificationChar = isbn.charAt(isbn.length()-1);
 		int verificationDigit;
 		
