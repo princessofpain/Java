@@ -5,9 +5,6 @@ A collection of simple Java applications.
 I use Java 8, partially Swing and JUnit5 for testing.
 
 ## The applications
-### Acronym
-Convert an entered name to an acronym. I/O with JOptionPane. 
- 
 ### AliqoutSum
 Calculate the aliquot sum of a number and specify its type.
 
@@ -37,11 +34,22 @@ Functions:
 		- Entering the number
 		- Show the result 
 
+### CheckForArmstrongNumber
+
+
+### ConvertNameToAcronym
+
+
 ### DifferenceOfSquares
 Calculate the difference between the square of the sum and the sum of the squares of n natural numbers.
 
 ### FactorRaindrops
 Calculate all factors of a number with Swing I/O.
+
+### Gigasecond
+
+#### Hamming
+
 
 ### ISBNVerifier
 Check an ISBN-number if it´s a valid 10-ISBN.
