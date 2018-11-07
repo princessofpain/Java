@@ -8,45 +8,63 @@ import javax.swing.JOptionPane;
 
 public class ISBNVerifier {
 	
-	boolean checkISBN(String isbn) {
-		int result = 0;
-		int b = 10;
+	public static void main(String args[]) {
+		String str = JOptionPane.showInputDialog("Enter an ISBN-10 number to check if it´s valid:");
+		ISBNVerifier ISBN = new ISBNVerifier();
+		boolean isValidISBN = ISBN.check(str);
 		
-		for(int i = 0; i < isbn.length(); i++) {
-			int a = (int) isbn.charAt(i); 		
-			result += a * b;
-			b--;
-		}
-		
-		if(result % 11 == 0) {
-			return true;
+		if(isValidISBN) {
+			JOptionPane.showMessageDialog(null, str + " is a valid ISBN-10 number.");
 		} else {
-			return false;
+			JOptionPane.showMessageDialog(null, str + " is not a valid ISBN-10  number!");
 		}
 	}
 	
-	boolean parseInput(String str) {
-		StringBuilder buildISBN = new StringBuilder();
-
-		for(int i = 0; i < str.length(); i++) {
-			char ch = str.charAt(i);
+	boolean check(String isbn) {		
+		int factor = calculateFactor(isbn);
+		int verificationDigit = assignVerificationDigit(isbn);
+		int total = factor + verificationDigit;
+		boolean isValidISBN = validate(total);
+		
+		return isValidISBN;
+	}
+	
+	int calculateFactor(String isbn) {
+		int result = 0;
+		
+		for(int i = 0, b = 10; i < isbn.length() - 1; i++) {
+			char a = isbn.charAt(i); 
+			int digit = Character.getNumericValue(a);
 			
-			if(ch >= '0' && ch <= '9') {
-				buildISBN.append(ch);
+			if(digit < 0) {
+				result += 0;
+			} else if (digit >= 0 || digit <= 10) {
+				result += digit * b;
+				b--;
 			}
 		}
 		
-		return checkISBN(buildISBN.toString());
+		return result;
 	}
 	
-	public static void main(String args[]) {
-		String str = JOptionPane.showInputDialog("Enter an ISBN number to check if it´s valid:");
-		ISBNVerifier ISBN = new ISBNVerifier();
+	int assignVerificationDigit(String isbn) {
+		char verificationChar = isbn.charAt(isbn.length()-1);
+		int verificationDigit;
 		
-		if(ISBN.parseInput(str)) {
-			JOptionPane.showMessageDialog(null, str + " is a valid ISBN-10 number.");
+		if(verificationChar == 'X') {
+			verificationDigit = 10;
 		} else {
-			JOptionPane.showMessageDialog(null, "This is not a valid ISBN-10  number!");
+			verificationDigit = Character.getNumericValue(verificationChar);
+		}
+		
+		return verificationDigit;
+	}
+	
+	boolean validate(int total) {
+		if(total % 11 == 0) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 }
