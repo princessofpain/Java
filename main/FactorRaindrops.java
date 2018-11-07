@@ -81,11 +81,11 @@ public class FactorRaindrops extends JFrame {
 		contentPane.add(btnCalculateFactors);
 	}
 	
-	String calculateFactor(int num) {
+	public String calculateFactor(int num) {
 		StringBuilder allNums = new StringBuilder();
 		
 		for(int i = 1; i <= num; i++) {
-			if(num % i == 0 && i == num) {
+			if(i == num) {
 				allNums.append(i);
 			} else if(num % i == 0) {
 				allNums.append(i + ", ");
