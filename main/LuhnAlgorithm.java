@@ -16,11 +16,11 @@ public class LuhnAlgorithm {
 		JOptionPane.showMessageDialog(null, input + resultMessage);
 	}
 	
-	String resultOfLuhnCheck(String input) {
+	public String resultOfLuhnCheck(String input) {
 		String parsedInput = cleanUpAndCheckLengthOf(input);
 		String resultMessage;
 		
-		if(parsedInput == "Error") {
+		if(parsedInput == "error") {
 			resultMessage = "This number is too short. Please enter a number with at least 2 digits.";
 			return resultMessage;
 		}
@@ -32,7 +32,7 @@ public class LuhnAlgorithm {
 		return resultMessage;
 	}
 	
-	String cleanUpAndCheckLengthOf(String input) {
+	private String cleanUpAndCheckLengthOf(String input) {
 		String parsedInput = parse(input);
 		
 		if(!lengthIsCorrect(parsedInput)) {
@@ -42,7 +42,7 @@ public class LuhnAlgorithm {
 		return parsedInput;
 	}
 	
-	String exchangeDigitsOf(String input) {
+	private String exchangeDigitsOf(String input) {
 		StringBuilder digitsExchanged = new StringBuilder(input);
 		int result = 0;
 		
@@ -56,7 +56,7 @@ public class LuhnAlgorithm {
 		return digitsExchanged.toString();
 	}
 	
-	boolean sumUpAndCheckModuloOf(String preparedInput) {
+	private boolean sumUpAndCheckModuloOf(String preparedInput) {
 		int result = 0;
 		
 		for(int i = 0; i < preparedInput.length(); i++) {
@@ -68,7 +68,7 @@ public class LuhnAlgorithm {
 		return isValid;
 	}
 	
-	String createResultMessage(boolean restIsZero) {
+	private String createResultMessage(boolean restIsZero) {
 		String resultMessage;
 		
 		if(restIsZero) {
@@ -80,7 +80,7 @@ public class LuhnAlgorithm {
 		return resultMessage;
 	}
 	
-	String parse(String input) {
+	private String parse(String input) {
 		StringBuilder cleanedInput = new StringBuilder();
 		
 		for(int i = 0; i < input.length(); i++) {
@@ -91,15 +91,15 @@ public class LuhnAlgorithm {
 		return cleanedInput.toString();
 	}
 	
-	boolean lengthIsCorrect(String parsedString) {
-		if(parsedString.length() <= 1) {
-			return false;
-		} else {
+	private boolean lengthIsCorrect(String parsedString) {
+		if(parsedString.length() > 1) {
 			return true;
+		} else {
+			return false;
 		}
 	}
 	
-	int addCrossNumber(int result) {
+	private int addCrossNumber(int result) {
 		if(result > 9) {
 			return calculateCrossNumber(result);
 		} else {
@@ -107,7 +107,7 @@ public class LuhnAlgorithm {
 		}
 	}
 	
-	boolean checkModuloOf(int result) {
+	private boolean checkModuloOf(int result) {
 		if(result % 10 == 0) {
 			return true;
 		} else {
@@ -115,7 +115,7 @@ public class LuhnAlgorithm {
 		}
 	}
 	
-	int calculateCrossNumber(int result) {
+	private int calculateCrossNumber(int result) {
 		String digits = Integer.toString(result);
 		result = 0;
 		
