@@ -8,39 +8,106 @@ import javax.swing.JOptionPane;
 
 public class LuhnAlgorithm {
 	
-	boolean isValid(String num) {
-		StringBuilder afterLuhn = new StringBuilder(num);
-		int result = 0;
+	public static void main(String[] args) {
+		String input = JOptionPane.showInputDialog("Please enter your credit card number:");
+		LuhnAlgorithm number = new LuhnAlgorithm();
+		String resultMessage = number.resultOfLuhnCheck(input);
+
+		JOptionPane.showMessageDialog(null, input + resultMessage);
+	}
+	
+	String resultOfLuhnCheck(String input) {
+		String parsedInput = cleanUpAndCheckLengthOf(input);
+		String resultMessage;
 		
-		// double all digits starting with the second from the right
-		for(int i = num.length() - 2; i >= 0; i -= 2) {
-			int digit = Character.getNumericValue(num.charAt(i));
-			result = digit + digit;
-			
-			// if the result of the double is greater than 9, calculate the cross sum of the number
-			if(result > 9) {
-				String digits = Integer.toString(result);
-				result = 0;
-				
-				for(int a = 0; a < digits.length(); a++) {
-					int digitNew = Character.getNumericValue(digits.charAt(a));
-					result += digitNew;
-				}
-			}
-			
-			//replace the old digit with the new one
-			afterLuhn.replace(i, i + 1, Integer.toString(result));
+		if(parsedInput == "Error") {
+			resultMessage = "This number is too short. Please enter a number with at least 2 digits.";
+			return resultMessage;
 		}
 		
-		result = 0;
+		String preparedInput = exchangeDigitsOf(parsedInput);
+		boolean restIsZero = sumUpAndCheckModuloOf(preparedInput);		
+		resultMessage = createResultMessage(restIsZero);
 		
-		// sum up all the digits of the number
-		for(int i = 0; i < afterLuhn.length(); i++) {
-			int digitToSum = Character.getNumericValue(afterLuhn.charAt(i));
+		return resultMessage;
+	}
+	
+	String cleanUpAndCheckLengthOf(String input) {
+		String parsedInput = parse(input);
+		
+		if(!lengthIsCorrect(parsedInput)) {
+			parsedInput = "error";
+		};
+		
+		return parsedInput;
+	}
+	
+	String exchangeDigitsOf(String input) {
+		StringBuilder digitsExchanged = new StringBuilder(input);
+		int result = 0;
+		
+		for(int i = input.length() - 2; i >= 0; i -= 2) {
+			int digit = Character.getNumericValue(input.charAt(i));
+			result = digit + digit;
+			result = addCrossNumber(result);
+			digitsExchanged.replace(i, i + 1, Integer.toString(result));
+		}
+		
+		return digitsExchanged.toString();
+	}
+	
+	boolean sumUpAndCheckModuloOf(String preparedInput) {
+		int result = 0;
+		
+		for(int i = 0; i < preparedInput.length(); i++) {
+			int digitToSum = Character.getNumericValue(preparedInput.charAt(i));
 			result += digitToSum;
 		}
 		
-		// check if result mod 10 = 0
+		boolean isValid = checkModuloOf(result);
+		return isValid;
+	}
+	
+	String createResultMessage(boolean restIsZero) {
+		String resultMessage;
+		
+		if(restIsZero) {
+			resultMessage = " is a valid number.";
+		} else {
+			resultMessage = " is not a valid number!";
+		}
+		
+		return resultMessage;
+	}
+	
+	String parse(String input) {
+		StringBuilder cleanedInput = new StringBuilder();
+		
+		for(int i = 0; i < input.length(); i++) {
+			if(input.charAt(i) >= '0' && input.charAt(i) <= '9') 
+				cleanedInput.append(input.charAt(i));
+		}
+		
+		return cleanedInput.toString();
+	}
+	
+	boolean lengthIsCorrect(String parsedString) {
+		if(parsedString.length() <= 1) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	int addCrossNumber(int result) {
+		if(result > 9) {
+			return calculateCrossNumber(result);
+		} else {
+			return result;	
+		}
+	}
+	
+	boolean checkModuloOf(int result) {
 		if(result % 10 == 0) {
 			return true;
 		} else {
@@ -48,36 +115,15 @@ public class LuhnAlgorithm {
 		}
 	}
 	
-	String parseString(String input) {
-		StringBuilder cleanInput = new StringBuilder();
+	int calculateCrossNumber(int result) {
+		String digits = Integer.toString(result);
+		result = 0;
 		
-		for(int i = 0; i < input.length(); i++) {
-			if(input.charAt(i) >= '0' && input.charAt(i) <= '9') 
-				cleanInput.append(input.charAt(i));
+		for(int a = 0; a < digits.length(); a++) {
+			int digitNew = Character.getNumericValue(digits.charAt(a));
+			result += digitNew;
 		}
 		
-		//check if the entered number has at least two digits
-		if(cleanInput.length() <= 1) {
-			String error = "Error";
-			return error;
-		}
-		
-		return cleanInput.toString();
-	}
-
-	public static void main(String[] args) {
-		String input = JOptionPane.showInputDialog("Please enter your credit card number:");
-		LuhnAlgorithm number = new LuhnAlgorithm();
-		String parsedInput = number.parseString(input);
-		
-		if(parsedInput == "Error") {
-			JOptionPane.showMessageDialog(null, "Enter at least two digits!");
-		} else {
-			if(number.isValid(parsedInput)) {
-				JOptionPane.showMessageDialog(null, input + " is a valid number.");
-			} else {
-				JOptionPane.showMessageDialog(null, "This is not a valid number!");
-			}
-		}
+		return result;
 	}
 }
