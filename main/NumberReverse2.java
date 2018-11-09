@@ -3,24 +3,41 @@ package main;
 /* Reverse a String
  * input is given
  * output is shown in the console
- * String is reversed by using StringBuilder
+ * String is reversed by using StringBuilder.reverse()
  */
 
-class NumberReverse2 {
+public class NumberReverse2 {
+	
 	public static void main (String args[]) {
-		int num = 123456;
+		int num = 12345678;
+		String str = Integer.toString(num);
+		NumberReverse2 number = new NumberReverse2();
 		
-		String numStr = Integer.toString(num);
-		StringBuilder numStrRev = new StringBuilder(numStr);	
+		number.reverseStringAndPrintInformation(str);
+	}
+	
+	public void reverseStringAndPrintInformation(String str) {
+		printOriginalInformation(str);
 		
-		System.out.println("String before: " + numStr);
-		System.out.println("The String has " + numStr.length() + " letters.");
+		String reversedString = reverseString(str);
+		printReversedInformation(reversedString);
 		
-		numStrRev.reverse();
-		
-		// convert the reversed string back to an int
-		int numRev = Integer.parseInt(numStrRev.toString());
-		
-		System.out.println("String afterwards: " + numRev);
+	}
+	
+	void printOriginalInformation(String str) {
+		System.out.println("String before: " + str);
+		System.out.println("The original String has " + str.length() + " letters.");
+		System.out.println();
+	}
+	
+	public String reverseString(String str) {
+		StringBuilder reversedStr = new StringBuilder(str);	
+		reversedStr.reverse();
+		return reversedStr.toString();
+	}
+	
+	void printReversedInformation(String str) {
+		System.out.println("String afterwards: " + str);
+		System.out.print("The reversed String has " + str.length() + " letters.");
 	}
 }
