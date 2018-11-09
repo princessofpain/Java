@@ -19,13 +19,13 @@ public class Matrix {
 		System.out.println();
 	}
 	
-	void buildMatrixArray(String str) {
+	public void buildMatrixArray(String str) {
 		StringBuilder cleanedUpString = removeAllUnecessaryCharacters(str);
 		char[][] matrix = createMatrixArray(cleanedUpString);
 		printMatrixArray(matrix);
 	}
 	
-	StringBuilder removeAllUnecessaryCharacters(String str) {
+	public StringBuilder removeAllUnecessaryCharacters(String str) {
 		StringBuilder strBuild = new StringBuilder();
 		
 		for(int i = 0; i < str.length(); i++) {
@@ -36,7 +36,7 @@ public class Matrix {
 		return strBuild;
 	}
 	
-	char[][] createMatrixArray(StringBuilder cleanedUpInput) {
+	public char[][] createMatrixArray(StringBuilder cleanedUpInput) {
 		char[][] matrix = new char[3][3];
 		
 		for(int i = 0; i < 3; i++) {
@@ -52,10 +52,15 @@ public class Matrix {
 	void printMatrixArray(char[][] matrix) {
 		
 		for(char[] row : matrix) {
-			for(char letter : row) {
-				System.out.print(letter + " ");
+			int counter = 0;
+			for(char digit : row) {
+				if(counter == 2) {
+					System.out.print(digit + "\n");
+				} else {
+					System.out.print(digit + " ");
+				}
+				counter++;
 			}
-			System.out.println();
 		}
 	}
 }
