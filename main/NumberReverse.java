@@ -6,12 +6,12 @@ package main;
  *
  */
 
-class NumberReverse {
+public class NumberReverse {
 	
 	public static void main (String args[]) {
 		int num = 123456;		
-		NumberReverse number = new NumberReverse();
 		
+		NumberReverse number = new NumberReverse();
 		number.reverseStringAndPrintInformation(num);
 	}
 	
@@ -44,6 +44,6 @@ class NumberReverse {
 	void printReversedStringInformation(String reversedStr) {
 		int numRev = Integer.parseInt(reversedStr.toString());		
 		System.out.println("String afterwards: " + numRev);
-		System.out.println("The reversed String has " + reversedStr.length() + " letters.");
+		System.out.print("The reversed String has " + reversedStr.length() + " letters.");
 	}
 }
