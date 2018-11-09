@@ -16,7 +16,8 @@ import java.awt.event.ActionEvent;
  * input via Swing
  * output via Swing
  */
-class NumberReverseSwing extends JFrame {
+
+public class NumberReverseSwing extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField enteredNumber;
@@ -62,33 +63,21 @@ class NumberReverseSwing extends JFrame {
 		JButton btnUseNumber = new JButton("Use number");
 		btnUseNumber.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Reversal myNumber = new Reversal(Integer.parseInt(enteredNumber.getText()));
+				NumberReverseSwing reversal = new NumberReverseSwing();
+				String number = enteredNumber.getText();
 				
-				int reversedNumber = myNumber.reverseTheNumber();
+				String reversedNumber = reversal.reverse(number);
 				result.setText("This is your number reversed: " + reversedNumber);
 			}
 		});
 		btnUseNumber.setBounds(20, 85, 109, 23);
 		contentPane.add(btnUseNumber);
 	}
-}
-
-class Reversal {
-	Reversal(int a) {
-		num = a;
-	}
 	
-	int num;
-	
-	int reverseTheNumber() {		
-		String numStr = Integer.toString(num);
-		StringBuilder numStrRev = new StringBuilder(numStr);	
+	public String reverse(String str) {		
+		StringBuilder buildString = new StringBuilder(str);			
+		buildString.reverse();
 		
-		numStrRev.reverse();
-		
-		// convert the reversed string back to an int
-		int numRev = Integer.parseInt(numStrRev.toString());
-		
-		return numRev;
+		return buildString.toString();
 	}
 }
