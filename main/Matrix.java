@@ -52,15 +52,10 @@ public class Matrix {
 	void printMatrixArray(char[][] matrix) {
 		
 		for(char[] row : matrix) {
-			int counter = 0;
 			for(char digit : row) {
-				if(counter == 2) {
-					System.out.print(digit + "\n");
-				} else {
-					System.out.print(digit + " ");
-				}
-				counter++;
+				System.out.print(digit + " ");
 			}
+			System.out.println();
 		}
 	}
 }

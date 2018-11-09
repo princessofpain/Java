@@ -32,7 +32,7 @@ public class MatrixTest {
 	public void matrixArrayIsWrittenInTheConsole() {
 		String str = "1 2 3456 7  8 9";
 		ma.buildMatrixArray(str);
-		String expected = "1 2 3\n4 5 6\n7 8 9\n";
+		String expected = "1 2 3 \r\n4 5 6 \r\n7 8 9 \r\n";
 		String actual = outContent.toString();
 		
 		assertEquals(expected, actual);
