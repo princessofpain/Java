@@ -1,42 +1,90 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
-/* Check a String if it´s a Pangram (a sentence, that contains all letters of the alphabet at least once)
+/* Check a String if it´s a Pangram (a sentence, that contains all letters of the alphabet at least one time)
  * Input manually
  * Output in the console
  */
 
-class Pangram {
+public class Pangram {
+	
 	public static void main(String[] args) {
-		String str = "The quick brown fox jumps over the lazy dog.";
-		char strLetters[] = new char[26]; 
-		int counter = 0;
+		String str = "This sentence, that I wrote, has a lot of - how to call that... - Non-letters?";
+		Pangram p = new Pangram();
+		p.checkForPangram(str);
+	}
+	
+	public void checkForPangram(String str) {
+		char[] strToArray = cleanUpStringAndBuildArray(str);
+		checkResult(strToArray, str);
+	}
+	
+	public char[] cleanUpStringAndBuildArray(String str) {
+		char[] strToArray = new char[26];
 		
-		for(int i = 0; i < str.length(); i++) {
+		for(int i = 0, indexToAddChar = 0; i < str.length(); i++) {
 			char letter = Character.toLowerCase(str.charAt(i));
-			int letterCount = 0;
 			
-			if(letter >= 'a' && letter <= 'z') {
-				for(int a = 0; a < strLetters.length; a++) {
-					if(letter != strLetters[a]) {
-						letterCount++;
-						if(letterCount == 26) {
-							strLetters[counter] = letter;
-							counter++;
-						}
-					}
-				}
-			}
-		}
-		
-		Arrays.sort(strLetters);
+			if(isValid(letter, strToArray)) {
+				strToArray = addChar(strToArray, letter, indexToAddChar);
+				indexToAddChar++;
+			} 
+		}		
+		return strToArray;
+	}
+	
+	void checkResult(char[] strToArray, String str) {
 		System.out.println("Your sentence is: " + str);
 
-		if(strLetters[25] == 'z' && strLetters[0] == 'a') {
-			System.out.println("This is a Pangram!");
+		Arrays.sort(strToArray);
+		printResult(strToArray);
+	}
+	
+	boolean isValid(char letter, char[] allLetters) {
+		List<String> list = buildList(allLetters);
+		String letterObject = Character.toString(letter);
+		
+		if(letter >= 'a' && letter <= 'z' && !list.contains(letterObject)) {
+			return true;
 		} else {
-			System.out.println("This is not a Pangram, there are letters missing...");
+			return false;
 		}
 	}
+	
+	char[] addChar(char[] strToArray, char letter, int i) {
+		
+		for(int a = 0, counter = 0; a < strToArray.length; a++) {
+			
+			if(letter != strToArray[a]) {
+				if(counter == strToArray.length - 1) {
+					strToArray[i] = letter;
+				}
+				counter++;
+			}
+		}
+		return strToArray;
+	}
+	
+	void printResult(char[] strToArray) {
+		if(strToArray[25] == 'z' && strToArray[0] == 'a') {
+			System.out.print("This is a Pangram!");
+		} else {
+			System.out.print("This is not a Pangram, there are letters missing...");
+		}
+	}
+	
+	List<String> buildList(char[] allLetters) {
+		List<String> list = new ArrayList<String>();
+		
+		for(char singleLetter: allLetters) {
+			list.add(Character.toString(singleLetter));
+		}
+		
+		return list;
+	}
 }
+
+
