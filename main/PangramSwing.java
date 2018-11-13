@@ -19,7 +19,7 @@ import java.awt.event.ActionEvent;
  * Output via Swing
  */
 
-class PangramSwing extends JFrame {
+public class PangramSwing extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField enteredString;
@@ -68,11 +68,12 @@ class PangramSwing extends JFrame {
 		JButton btnUseString = new JButton("Use String");
 		btnUseString.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//enteredString.disable();
-				checkPangram strPan = new checkPangram(enteredString.getText());
-				strPan.checkString();
+				Pangram pangram = new Pangram();
+				String str = enteredString.getText();
+				char[] allLetters = pangram.cleanUpStringAndBuildArray(str);;
+				boolean isPangram = checkString(allLetters);
 				
-				if(strPan.checkString() == 1) {
+				if(isPangram) {
 					informationPangram.setText("Your string is a pangram!");
 				} else {
 					informationPangram.setText("Your string is not a pangram, there are letters missing...");
@@ -82,44 +83,16 @@ class PangramSwing extends JFrame {
 		btnUseString.setBounds(20, 81, 118, 23);
 		contentPane.add(btnUseString);
 	}
-}
-
-// check the string if it´s a pangram
-class checkPangram {
-	checkPangram(String s) {
-		str = s;
-	}
 	
-	String str;
-	char strLetters[] = new char[26]; 
-	int counter = 0;
-	int isPangram = 0;
-	
-	int checkString() {
-		for(int i = 0; i < str.length(); i++) {
-			char letter = Character.toLowerCase(str.charAt(i));
-			int letterCount = 0;
-			
-			if(letter >= 'a' && letter <= 'z') {
-				for(int a = 0; a < strLetters.length; a++) {
-					if(letter != strLetters[a]) {
-						letterCount++;
-						if(letterCount == 26) {
-							strLetters[counter] = letter;
-							counter++;
-						}
-					}
-				}
-			}
-		}
-		Arrays.sort(strLetters);
+	public boolean checkString(char[] allLetters) {
+		boolean isPangram = false;
+		Arrays.sort(allLetters);
 		
-		if(strLetters[25] == 'z' && strLetters[0] == 'a') {
-			isPangram = 1;
-		} else {
-			isPangram = 0;
+		if(allLetters[25] == 'z' && allLetters[0] == 'a') {
+			isPangram = true;
 		}
 		
 		return isPangram;
 	}
 }
+
