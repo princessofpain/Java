@@ -5,14 +5,22 @@ package main;
  * output via console
  */
 
-class RNATranscription {
+public class RNATranscription {
+	
 	public static void main(String args[]) {
-		String rna = "G C A T G C G C A T G C";
+		RNATranscription rnaToDna = new RNATranscription();
+		String rna = "G C A T G C G C A T G C";		
+		String dna = rnaToDna.transcript(rna);	
 		
+		rnaToDna.printResult(rna, dna);
+	}
+	
+	public String transcript(String rna) {
 		StringBuilder dna = new StringBuilder("");
 		
 		for(int i = 0; i < rna.length(); i++) {
 			char letter = rna.charAt(i);
+			
 			switch(letter) {
 				case 'G': 
 					dna.append('C' + " ");
@@ -29,7 +37,11 @@ class RNATranscription {
 			}
 		}
 		
-		System.out.println("This is the RNA: " + rna);
-		System.out.println("This is the DNA: " + dna);		
+		return dna.toString();
+	}
+	
+	public void printResult(String rna, String dna) {
+		System.out.println("This is the rna: " + rna);
+		System.out.println("This is the dna: " + dna);
 	}
 }
