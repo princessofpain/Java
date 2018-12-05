@@ -20,17 +20,17 @@ import javax.swing.border.EmptyBorder;
  * Input is organized in single words by using the class Scanner
  */
 
-public class Proverbs extends JFrame {
+public class ProverbsInterface extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField words;
-
+	ProverbsLogic logic = new ProverbsLogic();
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Proverbs frame = new Proverbs();
+					ProverbsInterface frame = new ProverbsInterface();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,7 +42,7 @@ public class Proverbs extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Proverbs() {
+	public ProverbsInterface() {
 		String message = "Do you know the proverb \"For a horseshoe nail, a kingdom was lost\"? Go on and generate your own proverbs."
 				+ " Just enter a list of words you want to combine.\nFor each proverb you need 2 words!";
 
@@ -81,101 +81,13 @@ public class Proverbs extends JFrame {
 		JButton btnGo = new JButton("Go!");
 		btnGo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String[] args = separate(words.getText());			
-				result.setText(displayResultOf(args));
+				String[] args = logic.separate(words.getText());			
+				result.setText(logic.displayResultOf(args));
 			}
 		});
 		btnGo.setMargin(new Insets(2, 7, 2, 7));
 		btnGo.setFont(new Font("Dialog", Font.BOLD, 10));
 		btnGo.setBounds(374, 107, 37, 20);
 		contentPane.add(btnGo);
-	}
-	
-	String[] separate(String words) {
-		int numberOfTokens = countTokens(words);
-		
-		if(isOdd(numberOfTokens)) {
-			String[] noEvenInput = new String[0];
-			return noEvenInput;
-		}
-		
-		String[] allTokens = buildArray(words, numberOfTokens);
-		return allTokens;
-	}
-	
-	String displayResultOf(String[] allWords) {
-		String oddNumberMessage = "Please enter an even number of words!";
-		
-		if(allWords.length == 0) {
-			return oddNumberMessage;
-		} else {
-			String result = processWordsToProverbs(allWords);
-			return result;
-		}
-	}
-	
-	int countTokens(String words) {
-		Scanner scan = new Scanner(words);
-		int howManyWords = 0;
-		
-		for(int i = 0; i < words.length(); i++) {
-			if(scan.hasNext())  {
-				howManyWords++;
-				// scanner has to be moved to the next token
-				scan.next();
-			}
-		}
-		// scanner has to be closed or to be reset
-		scan.close();
-		
-		return howManyWords;
-	}
-
-	boolean isOdd(int numberOfTokens) {
-		if(numberOfTokens % 2 != 0) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	String[] buildArray(String words, int numberOfTokens) {
-		Scanner scan2 = new Scanner(words);
-		String allWords[] = new String[numberOfTokens];
-		
-		for(int i = 0; i < numberOfTokens; i++) {
-			if(scan2.hasNext()) {
-				allWords[i] = scan2.next().toString();
-			}
-		}
-		
-		scan2.close();
-		return allWords;
-	}
-	
-	String processWordsToProverbs(String[] allWords) {
-		String[] proverb = buildProverb(allWords);
-		StringBuilder allProverbs = new StringBuilder();
-		
-		for(int i = 0; i < allWords.length; i += 2) {
-			allProverbs.append(proverb[i]);
-		}
-		
-		return allProverbs.toString();
-	}
-	
-	String[] buildProverb(String[] str) {
-		String[] proverbsArray = new String[str.length];
-		
-		for(int i = 0; i < str.length; i+= 2) {
-			StringBuilder proverbs = new StringBuilder();
-			String word1 = str[i];
-			String word2 = str[i+1];
-			
-			proverbs.append("For want of a " + word1 + " the " + word2 + " was lost.\r\n");
-			proverbsArray[i] = proverbs.toString();
-		}
-		
-		return proverbsArray;
 	}
 }
