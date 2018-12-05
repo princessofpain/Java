@@ -9,21 +9,22 @@ import javax.swing.JOptionPane;
  */
 
 public class ProteinTranslation {
-	
+		
 	public static void main(String[] args) {
 		String input = JOptionPane.showInputDialog("Enter a RNA sequence:");
 		ProteinTranslation sequence = new ProteinTranslation();
 		
-		JOptionPane.showMessageDialog(null, "The proteins of the sequence " + input + " are:" + sequence.RNAToProteins(input));
+		JOptionPane.showMessageDialog(null, "The proteins of the sequence " + input + " are:" + sequence.toProteins(input));
 	}
 	
-	public String RNAToProteins(String str) {
-		StringBuilder allProteins = new StringBuilder(" ");
+	private StringBuilder allProteins = new StringBuilder("");
+	
+	public String toProteins(String str) {
 		boolean stop = false;
 		
 		for(int i = 0; i < str.length() && !stop; i += 3) {
 			StringBuilder protein = isolateSingleProtein(str, i);
-			allProteins = addProtein(allProteins, protein.toString());		
+			allProteins = addProteinToList(protein.toString());		
 			stop = checkForStop(allProteins);
 			allProteins = appendComma(allProteins, stop);
 		}
@@ -41,8 +42,8 @@ public class ProteinTranslation {
 		return singleProtein;
 	}
 	
-	public StringBuilder addProtein(StringBuilder allProteins, String protein) {
-		
+	StringBuilder addProteinToList(String protein) {
+
 		switch(protein) {
 			case "AUG": allProteins.append("Methionine");
 						break;
