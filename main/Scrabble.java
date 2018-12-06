@@ -1,6 +1,6 @@
 package main;
 
-import javax.swing.JOptionPane;
+import java.util.Scanner;
 
 /* Program to calculate the Scrabble Score of a word
  * input and output with JOptionPane
@@ -8,12 +8,29 @@ import javax.swing.JOptionPane;
 
 public class Scrabble {
 	
-	int scoreLetters(String s) {
-		s = s.toLowerCase();
+	public static void main(String args[]) {
+		Scrabble game = new Scrabble();
+		String input = game.enterWordWithConsoleInput().toLowerCase();
+		int score = game.calculateScoreOf(input);
+		
+		game.showResultMessage(score, input);
+	}
+	
+	// System.console().readLine() doesn´t work here because this method exclusively works outside of the IDE
+	public String enterWordWithConsoleInput() {
+		System.out.println("Enter a word to check its score for Scrabble:"); 
+		Scanner in = new Scanner(System.in);
+		String input = in.nextLine();
+		in.close();
+		
+		return input;
+	}
+	
+	public int calculateScoreOf(String input) {
 		int score = 0;
 			
-		for(int i = 0; i < s.length(); i++) {
-			char letter = s.charAt(i);
+		for(int i = 0; i < input.length(); i++) {
+			char letter = input.charAt(i);
 	
 			switch(letter) {
 				case 'a':
@@ -54,10 +71,7 @@ public class Scrabble {
 		return score;
 	}
 	
-	public static void main(String args[]) {
-		String str = JOptionPane.showInputDialog("Enter a word you want to score for Scrabble:");
-		Scrabble word = new Scrabble();
-			
-		JOptionPane.showMessageDialog(null, "The Scrabble score is: " + word.scoreLetters(str));
+	void showResultMessage(int score, String input) {
+		System.out.println("The word \"" + input + "\" has the score " + score + ".");
 	}
 }
