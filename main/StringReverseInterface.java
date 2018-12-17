@@ -18,7 +18,7 @@ import javax.swing.border.EmptyBorder;
  * output via Swing
  */
 
-public class StringReverseSwing extends JFrame {
+public class StringReverseInterface extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField enteredString;
@@ -30,7 +30,7 @@ public class StringReverseSwing extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					StringReverseSwing frame = new StringReverseSwing();
+					StringReverseInterface frame = new StringReverseInterface();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,7 +42,7 @@ public class StringReverseSwing extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public StringReverseSwing() {
+	public StringReverseInterface() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 517, 232);
 		contentPane = new JPanel();
@@ -82,9 +82,9 @@ public class StringReverseSwing extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				btnResetString.setEnabled(true);
-				ReversalString	myString = new ReversalString(enteredString.getText());
-				String reversedString = myString.reverseTheString();
-				result.setText("This is your reversed String: " + reversedString);
+				StringReverseLogic myString = new StringReverseLogic();
+				String resultMessage = myString.reverseStringAndCreateResultMessage(enteredString.getText());
+				result.setText(resultMessage);
 			}
 		});
 		contentPane.add(btnNewButton);
@@ -95,26 +95,11 @@ public class StringReverseSwing extends JFrame {
 		btnResetString.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				enteredString.setText("");
+				result.setText("");
 			}
 		});
 		sl_contentPane.putConstraint(SpringLayout.NORTH, btnResetString, 0, SpringLayout.NORTH, btnNewButton);
 		sl_contentPane.putConstraint(SpringLayout.WEST, btnResetString, 16, SpringLayout.EAST, btnNewButton);
 		contentPane.add(btnResetString);
-	}
-
-}
-
-class ReversalString { 
-	
-	ReversalString(String s) {
-		str = s;
-	}
-	
-	String str;
-	
-	String reverseTheString() {	
-		StringBuilder strRev = new StringBuilder(str);	
-		strRev.reverse();
-		return strRev.toString();
 	}
 }
