@@ -4,10 +4,10 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import main.SpaceAgeSwing;
+import main.SpaceAgeLogic;
 
-public class SpaceAgeSwingTest {
-	SpaceAgeSwing spaceAge = new SpaceAgeSwing();
+public class SpaceAgeTest {
+	SpaceAgeLogic spaceAge = new SpaceAgeLogic();
 	int age = 35;
 	
 	@Test
