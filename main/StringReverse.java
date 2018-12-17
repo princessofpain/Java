@@ -5,24 +5,29 @@ package main;
  * output via console
  */
 
-class StringReverse { 
+public class StringReverse { 
 	
 	public static void main(String args[]) {
-		String str = "Today";
-		int offset = 0;
-		int i;
-		
-		StringBuilder strRev = new StringBuilder("");
+		String str = "This is a simple little algorithm.";
 		
 		System.out.println("String before: " + str);
-		System.out.println("String has " + str.length() + " letters");
-		System.out.println();
+		System.out.println("The String has " + str.length() + " letters.\n");
 		
-		for(i = str.length()-1; i >= 0; i--) {
+		StringReverseLogic test = new StringReverseLogic();
+		String reversedString = test.reverseString(str);
+		System.out.println("String afterwards: " + reversedString);
+		System.out.println("The String afterwards has " + str.length() + " letters.\n");
+	}
+	
+	public String reverseString(String str) {
+		StringBuilder strRev = new StringBuilder("");
+		int offset = 0;
+		
+		for(int i = str.length()-1; i >= 0; i--) {
 			strRev.insert(offset, str.charAt(i));
 			offset++;
 		}
 		
-		System.out.println("String afterwards: " + strRev.toString());
+		return strRev.toString();
 	}
 }
