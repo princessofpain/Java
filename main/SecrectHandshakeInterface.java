@@ -13,6 +13,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import java.awt.Color;
+import java.awt.SystemColor;
 
 /* Program to generate a secret handshake based on a decimal number converted to a binary number
  * with reset button and button to show the binary code
@@ -26,7 +28,9 @@ import javax.swing.UIManager;
  * binary >= 10000 --> like binary >= 1000 and reverse of the order
  */
 
-public class SecrectHandshake extends JFrame {
+public class SecrectHandshakeInterface extends JFrame {
+	
+	private SecretHandshakeLogic logic = new SecretHandshakeLogic();
 
 	private JPanel contentPane;
 	private JTextField number;
@@ -45,7 +49,7 @@ public class SecrectHandshake extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SecrectHandshake frame = new SecrectHandshake();
+					SecrectHandshakeInterface frame = new SecrectHandshakeInterface();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -57,20 +61,21 @@ public class SecrectHandshake extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SecrectHandshake() {
+	public SecrectHandshakeInterface() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 299);
+		setBounds(100, 100, 445, 299);
 		contentPane = new JPanel();
 		contentPane.setBorder(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblEnterADecimal = new JLabel("Enter a decimal number:");
-		lblEnterADecimal.setBounds(10, 24, 151, 14);
+		lblEnterADecimal.setFont(new Font("Dialog", Font.PLAIN, 12));
+		lblEnterADecimal.setBounds(12, 66, 151, 14);
 		contentPane.add(lblEnterADecimal);
 		
 		number = new JTextField();
-		number.setBounds(154, 21, 45, 20);
+		number.setBounds(161, 63, 45, 20);
 		contentPane.add(number);
 		number.setColumns(10);
 		
@@ -81,7 +86,7 @@ public class SecrectHandshake extends JFrame {
 		txtWink.setHorizontalAlignment(SwingConstants.LEFT);
 		txtWink.setEditable(false);
 		txtWink.setText("wink");
-		txtWink.setBounds(20, 95, 114, 20);
+		txtWink.setBounds(22, 137, 114, 20);
 		contentPane.add(txtWink);
 		txtWink.setColumns(10);
 		
@@ -93,7 +98,7 @@ public class SecrectHandshake extends JFrame {
 		txtDoubleBlink.setEditable(false);
 		txtDoubleBlink.setColumns(10);
 		txtDoubleBlink.setBorder(null);
-		txtDoubleBlink.setBounds(20, 118, 114, 20);
+		txtDoubleBlink.setBounds(22, 160, 114, 20);
 		contentPane.add(txtDoubleBlink);
 		
 		txtCloseYourEyes = new JTextField();
@@ -104,7 +109,7 @@ public class SecrectHandshake extends JFrame {
 		txtCloseYourEyes.setEditable(false);
 		txtCloseYourEyes.setColumns(10);
 		txtCloseYourEyes.setBorder(null);
-		txtCloseYourEyes.setBounds(20, 142, 114, 20);
+		txtCloseYourEyes.setBounds(22, 184, 114, 20);
 		contentPane.add(txtCloseYourEyes);
 		
 		txtJump = new JTextField();
@@ -115,17 +120,18 @@ public class SecrectHandshake extends JFrame {
 		txtJump.setEditable(false);
 		txtJump.setColumns(10);
 		txtJump.setBorder(null);
-		txtJump.setBounds(20, 165, 114, 20);
+		txtJump.setBounds(22, 207, 114, 20);
 		contentPane.add(txtJump);
 		
 		JLabel lblDoYourSecret = new JLabel("Do your secret handshake:");
-		lblDoYourSecret.setBounds(10, 68, 179, 16);
+		lblDoYourSecret.setFont(new Font("Dialog", Font.PLAIN, 12));
+		lblDoYourSecret.setBounds(12, 110, 179, 16);
 		contentPane.add(lblDoYourSecret);
 		
-		JButton btnGenerateHandshake = new JButton("Generate Handshake");
+		JButton btnGenerateHandshake = new JButton("Generate");
 		btnGenerateHandshake.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int binary = Integer.parseInt(decimalToBinary(Integer.parseInt(number.getText())));
+				int binary = Integer.parseInt(logic.decimalToBinary(Integer.parseInt(number.getText())));
 				
 				if(binary >= 10000) {
 					txtWink.setText(txtJump.getText());
@@ -155,17 +161,17 @@ public class SecrectHandshake extends JFrame {
 			}
 		});
 		btnGenerateHandshake.setFont(new Font("Dialog", Font.BOLD, 11));
-		btnGenerateHandshake.setBounds(224, 18, 151, 26);
+		btnGenerateHandshake.setBounds(226, 60, 85, 26);
 		contentPane.add(btnGenerateHandshake);
 		
 		btnNewButton = new JButton("Show binary code");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				binaryCode.setText(decimalToBinary(Integer.parseInt(number.getText())));
+				binaryCode.setText(logic.decimalToBinary(Integer.parseInt(number.getText())));
 			}
 		});
-		btnNewButton.setFont(new Font("Dialog", Font.BOLD, 11));
-		btnNewButton.setBounds(224, 92, 151, 26);
+		btnNewButton.setFont(new Font("Dialog", Font.BOLD, 10));
+		btnNewButton.setBounds(226, 106, 129, 26);
 		contentPane.add(btnNewButton);
 		
 		binaryCode = new JTextArea();
@@ -173,10 +179,11 @@ public class SecrectHandshake extends JFrame {
 		binaryCode.setLineWrap(true);
 		binaryCode.setBackground(UIManager.getColor("Button.background"));
 		binaryCode.setEditable(false);
-		binaryCode.setBounds(224, 129, 151, 56);
+		binaryCode.setBounds(226, 138, 151, 56);
 		contentPane.add(binaryCode);
 		
 		btnReset = new JButton("Reset");
+		btnReset.setFont(new Font("Dialog", Font.BOLD, 11));
 		btnReset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txtWink.setText("wink");
@@ -193,25 +200,16 @@ public class SecrectHandshake extends JFrame {
 				binaryCode.setText("");
 			}
 		});
-		btnReset.setBounds(277, 215, 98, 26);
+		btnReset.setBounds(323, 60, 67, 26);
 		contentPane.add(btnReset);
-	}
-	
-	String decimalToBinary(int num) {
-		StringBuilder result = new StringBuilder();
-		int rest;
 		
-		do {
-			rest = num % 2;
-			num = num / 2;
-			
-			if(rest == 0) {
-				result.append(0);
-			} else if (rest == 1) {
-				result.append(1);
-			}
-		} while(num > 0);
-		
-		return result.toString();
+		JTextArea txtrCreateYourOwn = new JTextArea();
+		txtrCreateYourOwn.setFont(new Font("Dialog", Font.PLAIN, 12));
+		txtrCreateYourOwn.setBackground(SystemColor.control);
+		txtrCreateYourOwn.setLineWrap(true);
+		txtrCreateYourOwn.setEditable(false);
+		txtrCreateYourOwn.setText("Create your own handshake in one step! Simply enter a number and see how your handshake is generated based on its binary Code.");
+		txtrCreateYourOwn.setBounds(12, 12, 373, 41);
+		contentPane.add(txtrCreateYourOwn);
 	}
 }
