@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import main.LuhnAlgorithm;
+import main.LuhnAlgorithm.LuhnAlgorithm;
 
 public class LuhnAlgorithmTest {
 	

@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import main.FactorRaindrops;
+import main.FactorRaindrops.FactorRaindrops;
 
 public class FactorRaindropsTest {
 	

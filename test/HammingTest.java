@@ -3,7 +3,8 @@ package test;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-import main.Hamming;
+
+import main.Hamming.Hamming;
 
 public class HammingTest {
 	Hamming h = new Hamming();

@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import main.ProteinTranslation;
+import main.ProteinTranslation.ProteinTranslation;
 
 public class ProteinTranslationTest {
 	

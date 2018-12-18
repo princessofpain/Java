@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import main.ISBNVerifier;
+import main.ISBNVerifier.ISBNVerifier;
 
 public class ISBNVerifierTest {
 	ISBNVerifier iv = new ISBNVerifier();

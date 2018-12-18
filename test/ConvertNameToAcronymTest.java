@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import main.ConvertNameToAcronym;
+import main.StringToAcronym.ConvertNameToAcronym;
 
 class ConvertNameToAcronymTest {
 	

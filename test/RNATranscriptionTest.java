@@ -9,7 +9,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import main.RNATranscription;
+import main.RNATranscription.RNATranscription;
 
 public class RNATranscriptionTest {
 	

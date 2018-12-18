@@ -4,7 +4,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-import main.PangramSwing;
+
+import main.Pangram.PangramSwing;
 
 public class PangramSwingTest {
 	

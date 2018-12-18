@@ -4,8 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import main.StringReverseLogic;
-import main.StringReverseLogic;
+import main.StringReverse.StringReverseLogic;
 
 public class StringReverseTest {
 	

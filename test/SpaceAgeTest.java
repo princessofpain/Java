@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import main.SpaceAgeLogic;
+import main.SpaceAge.SpaceAgeLogic;
 
 public class SpaceAgeTest {
 	SpaceAgeLogic spaceAge = new SpaceAgeLogic();

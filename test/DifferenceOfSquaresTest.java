@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import main.DifferenceOfSquares;
+import main.DifferenceOfSquares.DifferenceOfSquares;
 
 public class DifferenceOfSquaresTest {
 	DifferenceOfSquares difference = new DifferenceOfSquares();

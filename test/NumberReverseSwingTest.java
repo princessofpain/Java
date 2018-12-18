@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import main.NumberReverseSwing;
+import main.NumberReverse.NumberReverseSwing;
 
 public class NumberReverseSwingTest {
 	

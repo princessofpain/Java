@@ -9,7 +9,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import main.NumberReverse;
+import main.NumberReverse.NumberReverse;
 
 public class NumberReverseTest {
 	
