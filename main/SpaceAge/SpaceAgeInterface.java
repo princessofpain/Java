@@ -15,6 +15,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import main.SpaceAge.Factory.Planet;
+import main.SpaceAge.Factory.PlanetFactory;
+
 /* Program to calculate a humans age oriented on earth´s years on another planet
  * input via Swing
  * output via Swing
@@ -194,6 +197,7 @@ public class SpaceAgeInterface extends JFrame {
 		JButton btnCalculate = new JButton("Calculate");
 		btnCalculate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				chckbxMercury.setSelected(false);
 				mercuryResult.setText("");
 				chckbxVenus.setSelected(false);
 				venusResult.setText("");
@@ -208,11 +212,11 @@ public class SpaceAgeInterface extends JFrame {
 				chckbxNeptune.setSelected(false);
 				neptuneResult.setText("");
 				
-				int ageInYears = Integer.parseInt(age.getText());
-				
 				for(String planet: planets) {
-					SpaceAgeLogic thisAge = new SpaceAgeLogic();
-					String resultMessage = thisAge.calculateOnePlanetAndCreateMessage(planet, ageInYears);
+					PlanetFactory planetFactory = new PlanetFactory();
+					Planet planet1 = planetFactory.getPlanet(planet);
+					planet1.calculateAge(Integer.parseInt(age.getText()));
+					String resultMessage = planet1.createResultMessage();
 					
 					switch(planet) {
 						case "Mercury": mercuryResult.setText(resultMessage);
