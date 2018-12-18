@@ -4,71 +4,79 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import main.SpaceAge.SpaceAgeLogic;
+import main.SpaceAge.Factory.Planet;
+import main.SpaceAge.Factory.PlanetFactory;
 
 public class SpaceAgeTest {
-	SpaceAgeLogic spaceAge = new SpaceAgeLogic();
+	PlanetFactory factory = new PlanetFactory();
 	int age = 35;
 	
 	@Test
 	public void ageOnMercuryIsCorrect() {
-		String planet = "Mercury";
-		String expected = "8,43";
-		String actual = spaceAge.calculateAge(planet,age);
+		String planetType = "Mercury";
+		int expected = 8;
+		Planet mercury = factory.getPlanet(planetType);
+		int actual = mercury.calculateAge(age);
 		
 		assertEquals(expected, actual);
 	}
 	
 	@Test
 	public void ageOnVenusIsCorrect() {
-		String planet = "Venus";
-		String expected = "21,53";
-		String actual = spaceAge.calculateAge(planet,age);
+		String planetType = "Venus";
+		int expected = 21;
+		Planet venus = factory.getPlanet(planetType);
+		int actual = venus.calculateAge(age);
 		
 		assertEquals(expected, actual);
 	}
 	
 	@Test
 	public void ageOnMarsIsCorrect() {
-		String planet = "Mars";
-		String expected = "65,83";
-		String actual = spaceAge.calculateAge(planet,age);
+		String planetType = "Mars";
+		int expected = 65;
+		Planet mars = factory.getPlanet(planetType);
+		int actual = mars.calculateAge(age);
 		
-		assertEquals(expected, actual);
+		assertEquals(expected, actual);;
 	}
 	
 	@Test
 	public void ageOnJupiterIsCorrect() {
-		String planet = "Jupiter";
-		String expected = "415,19";
-		String actual = spaceAge.calculateAge(planet,age);
+		String planetType = "Jupiter";
+		int expected = 415;
+		Planet jupiter = factory.getPlanet(planetType);
+		int actual = jupiter.calculateAge(age);
 		
 		assertEquals(expected, actual);
 	}
 	
 	@Test
 	public void ageOnSaturnIsCorrect() {
-		String planet = "Saturn";
-		String expected = "1030,66";
-		String actual = spaceAge.calculateAge(planet,age);
+		String planetType = "Saturn";
+		int expected = 1030;
+		Planet saturn = factory.getPlanet(planetType);
+		int actual = saturn.calculateAge(age);
 		
 		assertEquals(expected, actual);
 	}
 	
 	@Test
 	public void ageOnUranusIsCorrect() {
-		String planet = "Uranus";
-		String expected = "2940,59";
-		String actual = spaceAge.calculateAge(planet,age);
+		String planetType = "Uranus";
+		int expected = 2940;
+		Planet uranus = factory.getPlanet(planetType);
+		int actual = uranus.calculateAge(age);
 		
 		assertEquals(expected, actual);
 	}
 	
 	@Test
 	public void ageOnNeptuneIsCorrect() {
-		String planet = "Neptune";
-		String expected = "5767,70";
-		String actual = spaceAge.calculateAge(planet,age);
+		String planetType = "Neptune";
+		int expected = 5767;
+		Planet neptune = factory.getPlanet(planetType);
+		int actual = neptune.calculateAge(age);
 		
 		assertEquals(expected, actual);
 	}
