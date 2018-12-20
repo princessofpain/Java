@@ -1,6 +1,7 @@
 package main.Mockito;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PersonalInformation {
 	private Person person;
@@ -28,16 +29,16 @@ public class PersonalInformation {
 		return education;
 	}
 	
-	public void addEducation(Education education) {
-		this.education.add(education);
+	public void addEducation(Education... education) {
+		this.education.addAll(Arrays.asList(education));
 	}
 	
 	public ArrayList<Profession> getProfession() {
 		return profession;
 	}
 	
-	public void addProfession(Profession profession) {
-		this.profession.add(profession);
+	public void addProfession(Profession... profession) {
+		this.profession.addAll(Arrays.asList(profession));
 	}
 	
 	
