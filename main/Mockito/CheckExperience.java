@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class CheckExperience {
 	
-	Education getHighestDegree(ArrayList<Education> education) {
+	public Education getHighestDegree(ArrayList<Education> education) {
 		Education highestDegree = education.get(0);
 		
 		for(Education degree: education) {
@@ -26,7 +26,7 @@ public class CheckExperience {
 		return highestDegree;
 	}
 	
-	Profession getLatestJob(ArrayList<Profession> profession) {
+	public Profession getLatestJob(ArrayList<Profession> profession) {
 		Profession latestJob = null;
 		int latestStart = 0;
 		

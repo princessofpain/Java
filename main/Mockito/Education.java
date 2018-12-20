@@ -20,7 +20,7 @@ public class Education {
 		this.degree = degree;
 	}
 	
-	DegreeType getDegree() {
+	public DegreeType getDegree() {
 		return degree;
 	}
 	
