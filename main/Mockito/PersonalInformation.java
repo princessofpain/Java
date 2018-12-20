@@ -1,10 +1,12 @@
 package main.Mockito;
 
+import java.util.ArrayList;
+
 public class PersonalInformation {
-	Person person;
-	Family family; 
-	Education education;
-	Profession profession;
+	private Person person;
+	private Family family; 
+	private ArrayList<Education> education = new ArrayList<Education>();
+	private ArrayList<Profession> profession = new ArrayList<Profession>();
 	
 	public Person getPerson() {
 		return person;
@@ -22,20 +24,20 @@ public class PersonalInformation {
 		this.family = family;
 	}
 	
-	public Education getEducation() {
+	public ArrayList<Education> getEducation() {
 		return education;
 	}
 	
-	public void setEducation(Education education) {
-		this.education = education;
+	public void addEducation(Education education) {
+		this.education.add(education);
 	}
 	
-	public Profession getProfession() {
+	public ArrayList<Profession> getProfession() {
 		return profession;
 	}
 	
-	public void setProfession(Profession profession) {
-		this.profession = profession;
+	public void addProfession(Profession profession) {
+		this.profession.add(profession);
 	}
 	
 	
