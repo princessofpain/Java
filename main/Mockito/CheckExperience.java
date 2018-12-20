@@ -4,19 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class CheckExperience {
-	ArrayList<Education> education = new ArrayList<Education>();
-	ArrayList<Profession> profession = new ArrayList<Profession>();
 	
-	public CheckExperience(Education... education) {
-		this.education.addAll(Arrays.asList(education));
-	}
-	
-	public CheckExperience(Profession... profession) {
-		this.profession.addAll(Arrays.asList(profession));
-	}
-	
-	Education getHighestDegree() {
-		Education highestDegree = null;
+	Education getHighestDegree(ArrayList<Education> education) {
+		Education highestDegree = education.get(0);
 		
 		for(Education degree: education) {
 			DegreeType actualDegree = degree.getDegree();
@@ -28,7 +18,7 @@ public class CheckExperience {
 				highestDegree = degree;
 			} else if(actualDegree == DegreeType.BACHELOR && highestDegreeYet == DegreeType.ASSOCIATE) {
 				highestDegree = degree;
-			} else if(highestDegreeYet == DegreeType.ASSOCIATE && highestDegreeYet == null) {
+			} else if(highestDegreeYet == DegreeType.ASSOCIATE) {
 				highestDegree = degree;
 			} 
 		}
@@ -36,7 +26,7 @@ public class CheckExperience {
 		return highestDegree;
 	}
 	
-	Profession getLatestJob() {
+	Profession getLatestJob(ArrayList<Profession> profession) {
 		Profession latestJob = null;
 		int latestStart = 0;
 		
