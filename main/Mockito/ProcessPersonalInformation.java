@@ -1,12 +1,10 @@
 package main.Mockito;
 
-import java.util.ArrayList;
+import java.util.Calendar;
 
 public class ProcessPersonalInformation {
 
 	public static void main(String[] args) {
-		ProcessPersonalInformation process = new ProcessPersonalInformation();
-		
 		Person person1 = new Person("Peter", "Müller", Sex.MALE);		
 		Family person1Family = new Family(true, 2, 0);
 		Education person1Degree1 = new Education(DegreeType.ASSOCIATE, 3.3, "Los Angeles City College", 1991, 1993);
@@ -14,19 +12,26 @@ public class ProcessPersonalInformation {
 		person1Information.setPerson(person1);
 		person1Information.setFamily(person1Family);
 		person1Information.addEducation(person1Degree1);
+		Profession person1Profession1 = new Profession("Waitor", "Jimmy´s Pizza House", 1990, 1993);
+		Profession person1Profession2 = new Profession("Waitor", "Asado NY", 1993, 1995);
+		Profession person1Profession3 = new Profession("Manager", "Asado NY", 1996);
+		person1Information.addProfession(person1Profession1, person1Profession2, person1Profession3);
 		
+		PersonalInformation person2Information = new PersonalInformation();
 		Person person2 = new Person("Heidi", "Krause", Sex.FEMALE);
+		person2Information.setPerson(person2);
 		Family person2Family = new Family(false, 0, 3);
+		person2Information.setFamily(person2Family);
 		Education person2Degree1 = new Education(DegreeType.ASSOCIATE, 2.5, "Boston College", 2002, 2005);
 		Education person2Degree2 = new Education(DegreeType.BACHELOR, 2.8, "University Of California", 2005, 2008);
 		Education person2Degree3 = new Education(DegreeType.MASTER, 2.0, "University Of California", 2008, 2010);
-		PersonalInformation person2Information = new PersonalInformation();
-		person2Information.setPerson(person2);
-		person2Information.setFamily(person2Family);
-		person2Information.addEducation(person2Degree1);
-		person2Information.addEducation(person2Degree2);
-		person2Information.addEducation(person2Degree3);
+		person2Information.addEducation(person2Degree1, person2Degree2, person2Degree3);
+		Profession person2Profession1 = new Profession("Working Student", "Microsoft", 2009, 2010);
+		Profession person2Profession2 = new Profession("Junior Project Manger", "Microsoft", 2010, 2012);
+		Profession person2Profession3 = new Profession("Project Manger", "SAP", 2012, 2018);
+		person2Information.addProfession(person2Profession1, person2Profession2, person2Profession3);
 		
+		ProcessPersonalInformation process = new ProcessPersonalInformation();
 		System.out.println(process.lastNameHasHigherAlphabeticalScore(person1Information, person2Information));
 		System.out.println();
 		
@@ -36,6 +41,10 @@ public class ProcessPersonalInformation {
 		
 		System.out.println(process.printHighestDegree(person1Information));
 		System.out.println(process.printHighestDegree(person2Information));
+		System.out.println();
+
+		System.out.println(process.printLastJob(person1Information));
+		System.out.println(process.printLastJob(person2Information));
 	}
 	
 	public String lastNameHasHigherAlphabeticalScore(PersonalInformation person1, PersonalInformation person2) {
@@ -64,11 +73,18 @@ public class ProcessPersonalInformation {
 	}
 	
 	public String printHighestDegree(PersonalInformation pInformation) {
-		ArrayList<Education> allDegrees = pInformation.getEducation();
 		CheckExperience check = new CheckExperience();
-		Education highestDegree = check.getHighestDegree(allDegrees);
+		Education highestDegree = check.getHighestDegree(pInformation.getEducation());
 		
 		return pInformation.getPerson().getFirstName() + "s highest degree is \"" + highestDegree.getDegree() + "\".";
+	}
+	
+	public String printLastJob(PersonalInformation pInformation) {
+		CheckExperience check = new CheckExperience();
+		Profession lastJob = check.getLastJob(pInformation.getProfession());
+		String lastOrActual = printLastOrActual(lastJob);
+				
+		return pInformation.getPerson().getFirstName() + " " + lastOrActual + " " + lastJob.getJobTitle() + " at " + lastJob.getEmployer() + "." ;
 	}
 	
 	boolean isAMan(PersonalInformation pInformation) {
@@ -81,6 +97,24 @@ public class ProcessPersonalInformation {
 	
 	boolean isMarried(PersonalInformation pInformation) {
 		if(pInformation.getFamily().isMarried() == true) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	String printLastOrActual(Profession lastProfession) {
+		if(isThisYear(lastProfession.getEnd())) {
+			return "is currently working as";
+		} else {
+			return "was most recently working as a";
+		}
+	}
+	
+	boolean isThisYear(int end) {
+		int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+		
+		if(end == currentYear) {
 			return true;
 		} else {
 			return false;
