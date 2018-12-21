@@ -1,7 +1,6 @@
 package main.Mockito;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class CheckExperience {
 	
@@ -26,7 +25,7 @@ public class CheckExperience {
 		return highestDegree;
 	}
 	
-	public Profession getLatestJob(ArrayList<Profession> profession) {
+	public Profession getLastJob(ArrayList<Profession> profession) {
 		Profession latestJob = null;
 		int latestStart = 0;
 		
