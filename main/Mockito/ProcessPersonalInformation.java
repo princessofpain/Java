@@ -59,6 +59,13 @@ public class ProcessPersonalInformation {
 		
 		System.out.println(process.printDomicileInformation(person1Information));
 		System.out.println(process.printDomicileInformation(person2Information));
+		
+		domicilePerson2 = domicileFactory.getDomicile("house");
+		domicilePerson2.setBasicInformation(4, 100, "San Francisco", 1);
+		person2Information.setDomicile(domicilePerson2);
+		
+		System.out.println();
+		System.out.println(process.printDomicileInformation(person2Information));
 	}
 	
 	public String lastNameHasHigherAlphabeticalScore(PersonalInformation person1, PersonalInformation person2) {
