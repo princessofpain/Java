@@ -6,8 +6,17 @@ public class Profession {
 	private String employer;
 	private String jobTitle;
 	
-	void setStart(int start) {
+	public Profession(String jobTitle, String employer, int start) {
+		this.jobTitle = jobTitle;
+		this.employer = employer;
 		this.start = start;
+	}
+	
+	public Profession(String jobTitle, String employer, int start, int end) {
+		this.jobTitle = jobTitle;
+		this.employer = employer;
+		this.start = start;
+		this.end = end;
 	}
 	
 	int getStart() {
@@ -26,15 +35,7 @@ public class Profession {
 		return employer;
 	}
 
-	public void setEmployer(String employer) {
-		this.employer = employer;
-	}
-
 	public String getJobTitle() {
 		return jobTitle;
-	}
-
-	public void setJobTitle(String jobTitle) {
-		this.jobTitle = jobTitle;
 	}
 }
