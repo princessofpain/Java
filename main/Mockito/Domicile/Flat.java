@@ -1,22 +1,53 @@
 package main.Mockito.Domicile;
 
-public class Flat extends Domicile {
+public class Flat implements Domicile {
 	
+	private String type = "flat";
+	private int numberOfRooms;
+	private int size;
+	private String location;
 	int floor;
 	String apartment;
 	int numberOfNeighbors;
 	boolean hasAC = false;
-	boolean hasWashing = false;
 	boolean hasElevator = false;
 	boolean hasBalcony = false;
-	boolean hasIntercom = false;
 
-	public Flat(int numberOfRooms, int size, String type, String location, int floor, String apartment) {
-		super(numberOfRooms, size, type, location);
+	public void setBasicInformation(int numberOfRooms, int size, String location, int floor) {
+		this.numberOfRooms = numberOfRooms;
+		this.size = size;
+		this.location = location;
 		this.floor = floor;
-		this.apartment = apartment;
 	}
 	
+	public String getType() {
+		return type;
+	}
+
+	public int getNumberOfRooms() {
+		return numberOfRooms;
+	}
+
+	public int getSize() {
+		return size;
+	}
+	
+	public String getLocation() {
+		return location;
+	}
+	
+	public int getFloor() {
+		return floor;
+	}
+	
+	public String getApartment() {
+		return apartment;
+	}
+
+	public void setApartment(String apartment) {
+		this.apartment = apartment;
+	}
+
 	void setNeighbors(int numberOfNeighbors) {
 		this.numberOfNeighbors = numberOfNeighbors; 
 	}
@@ -33,14 +64,6 @@ public class Flat extends Domicile {
 		return hasAC;
 	}
 	
-	void setWashing(boolean hasWashing) {
-		this.hasWashing = hasWashing;
-	}
-	
-	boolean getWashing() {
-		return hasWashing;
-	}
-	
 	void setElevator(boolean hasElevator) {
 		this.hasElevator = hasElevator;
 	}
@@ -55,13 +78,5 @@ public class Flat extends Domicile {
 	
 	boolean getBalcony() {
 		return hasBalcony;
-	}
-	
-	void setIntercom(boolean hasIntercom) {
-		this.hasIntercom = hasIntercom;
-	}
-	
-	boolean getIntercom() {
-		return hasIntercom;
 	}
 }

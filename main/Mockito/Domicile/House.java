@@ -1,22 +1,40 @@
 package main.Mockito.Domicile;
 
-public class House extends Domicile {
-
+public class House implements Domicile {
+	
+	private String type = "house";
+	private int numberOfRooms;
+	private int size;
+	private String location;
 	private int floors;
 	private boolean hasFireplace;
 	private boolean hasPool;
 	private boolean hasGarden;
 	private int numberOfGarages;
+	
+	public void setBasicInformation(int numberOfRooms, int size, String location, int floors) {
+		this.numberOfRooms = numberOfRooms;
+		this.size = size;
+		this.location = location;
+		this.floors = floors;
+	}
+	
+	public String getType() {
+		return type;
+	}
+	
+	public int getNumberOfRooms() {
+		return numberOfRooms;
+	}
+	
+	public int getSize() {
+		return size;
+	}
+	
+	public String getLocation() {
+		return location;
+	}
 
-	public House(int numberOfRooms, int size, String type, String location, int floors) {
-		super(numberOfRooms, size, type, location);
-		this.floors = floors;
-	}
-	
-	public void setFloors(int floors) {
-		this.floors = floors;
-	}
-	
 	public int getFloors() {
 		return floors;
 	}

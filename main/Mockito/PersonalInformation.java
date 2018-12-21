@@ -3,11 +3,14 @@ package main.Mockito;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import main.Mockito.Domicile.Domicile;
+
 public class PersonalInformation {
 	private Person person;
 	private Family family; 
 	private ArrayList<Education> education = new ArrayList<Education>();
 	private ArrayList<Profession> profession = new ArrayList<Profession>();
+	private Domicile domicile;
 	
 	public Person getPerson() {
 		return person;
@@ -40,6 +43,12 @@ public class PersonalInformation {
 	public void addProfession(Profession... profession) {
 		this.profession.addAll(Arrays.asList(profession));
 	}
-	
-	
+
+	public Domicile getDomicile() {
+		return domicile;
+	}
+
+	public void setDomicile(Domicile domicile) {
+		this.domicile = domicile;
+	}
 }
