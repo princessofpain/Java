@@ -2,6 +2,9 @@ package main.Mockito;
 
 import java.util.Calendar;
 
+import main.Mockito.Domicile.Domicile;
+import main.Mockito.Domicile.DomicileFactory;
+
 public class ProcessPersonalInformation {
 
 	public static void main(String[] args) {
@@ -16,6 +19,10 @@ public class ProcessPersonalInformation {
 		Profession person1Profession2 = new Profession("Waitor", "Asado NY", 1993, 1995);
 		Profession person1Profession3 = new Profession("Manager", "Asado NY", 1996);
 		person1Information.addProfession(person1Profession1, person1Profession2, person1Profession3);
+		DomicileFactory domicileFactory = new DomicileFactory();
+		Domicile domicilePerson1 = domicileFactory.getDomicile("house");
+		domicilePerson1.setBasicInformation(6, 150, "Los Angeles", 2);
+		person1Information.setDomicile(domicilePerson1);
 		
 		PersonalInformation person2Information = new PersonalInformation();
 		Person person2 = new Person("Heidi", "Krause", Sex.FEMALE);
@@ -30,6 +37,9 @@ public class ProcessPersonalInformation {
 		Profession person2Profession2 = new Profession("Junior Project Manger", "Microsoft", 2010, 2012);
 		Profession person2Profession3 = new Profession("Project Manger", "SAP", 2012, 2018);
 		person2Information.addProfession(person2Profession1, person2Profession2, person2Profession3);
+		Domicile domicilePerson2 = domicileFactory.getDomicile("flat");
+		domicilePerson2.setBasicInformation(2, 40, "San Francisco", 7);
+		person2Information.setDomicile(domicilePerson2);
 		
 		ProcessPersonalInformation process = new ProcessPersonalInformation();
 		System.out.println(process.lastNameHasHigherAlphabeticalScore(person1Information, person2Information));
@@ -45,6 +55,10 @@ public class ProcessPersonalInformation {
 
 		System.out.println(process.printLastJob(person1Information));
 		System.out.println(process.printLastJob(person2Information));
+		System.out.println();
+		
+		System.out.println(process.printDomicileInformation(person1Information));
+		System.out.println(process.printDomicileInformation(person2Information));
 	}
 	
 	public String lastNameHasHigherAlphabeticalScore(PersonalInformation person1, PersonalInformation person2) {
@@ -87,6 +101,15 @@ public class ProcessPersonalInformation {
 		return pInformation.getPerson().getFirstName() + " " + lastOrActual + " " + lastJob.getJobTitle() + " at " + lastJob.getEmployer() + "." ;
 	}
 	
+	public String printDomicileInformation(PersonalInformation pInformation) {
+		String domicileType = pInformation.getDomicile().getType();
+		String type = pInformation.getPerson().getFirstName() + " lives in a " + domicileType + ". ";
+		String noOfRooms = "The " + domicileType + " has " + pInformation.getDomicile().getNumberOfRooms() + " rooms. ";
+		String sizeAndLocation = "It has " + pInformation.getDomicile().getSize() + " squaremeters and is located in " + pInformation.getDomicile().getLocation() + ".";
+		
+		return type + noOfRooms + sizeAndLocation;
+	}
+
 	boolean isAMan(PersonalInformation pInformation) {
 		if(pInformation.getPerson().getSex() == Sex.MALE) {
 			return true;
